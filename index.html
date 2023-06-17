@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>		<meta charset="utf-8">
+
+		<title></title>
+
+		<style>
+
+			*{
+
+				
+
+				margin: 0;
+
+				padding: 0;
+
+			}
+
+			body{
+
+				background: pink;
+
+                
+
+			}
+
+			.envelope{
+
+				position: absolute;
+
+				top: 20%;
+
+				left: 20%;
+
+				
+
+				/* 盒子阴影 */
+
+				box-shadow: 2px 20px 20px rgba(0, 0, 0, .1);
+
+				
+
+				/* 居中内容 */
+
+				display: flex;
+
+				justify-content: center;
+
+				align-items: center;
+
+				
+
+				width: 500px;
+
+				height: 350px;
+
+				background: #fad4bf;
+
+				transform: rotate(9deg) scale(1.5);
+
+				
+
+			}
+
+			.content{
+
+				position: absolute;
+
+				
+
+				/* 过渡 */
+
+				transition: 2s;
+
+				/* 行高 */
+
+				line-height: 1.6em;
+
+				padding: 2em;
+
+				/* css3盒子模型 */
+
+				box-sizing: border-box;
+
+				
+
+				background: white;
+
+				width: 95%;
+
+				height: 90%;
+
+				
+
+				/* 透明度暂时设为0 */
+
+				opacity: 0;
+
+			}
+
+			
+
+			/* 三角形 */
+
+			.top{
+
+				
+
+				
+
+				/* position: absolute; */
+
+				margin-left: 16px;
+
+				width: 1px;
+
+				height: 1px;
+
+				border-top: 175px solid red;
+
+				border-left: 250px solid transparent;
+
+				border-right: 250px solid transparent;
+
+				border-bottom: 175px solid transparent;
+
+			}
+
+			/* 在三角形内部添加一个三角形 */
+
+			.top::before{
+
+				/* 伪元素需要块状显示 才能定位 */
+
+				display: block;
+
+				position: absolute;
+
+				filter: brightness(1.1);
+
+				content: '';
+
+				top: -4px;
+
+				left: 8px;
+
+				width: 1px;
+
+				height: 1px;
+
+				border-top: 175px solid #fad4bf;
+
+				border-left: 250px solid transparent;
+
+				border-right: 250px solid transparent;
+
+				border-bottom: 175px solid transparent;
+
+				
+
+			}
+
+			
+
+			span{
+
+				position: absolute;
+
+				font-size: 60px;
+
+				color: red;
+
+				text-shadow: 2px 2px 20px rgba(255, 0, 0, .5);
+
+				/* 调用动画 无限循环*/
+
+				animation: scale 0.5s infinite alternate;
+
+			}
+
+			/* 缩放动画 */
+
+			@keyframes scale{
+
+				100%{
+
+					transform: scale(1.2);
+
+				}
+
+			}
+
+		</style>
+
+		
+
+	</head>
+
+	<body>
+
+		<div class="envelope">
+
+			<div class="top"></div>
+
+			<span>❤</span>
+
+			<div class="content">
+
+				<p></p>
+
+			</div>
+
+		</div>
+
+		<script>
+
+			// 获取信封和p
+
+			let envelop = document.querySelector('.envelope')
+
+			let p = document.querySelector('p')
+
+			//填写
+
+			let str = '这个世界好大能遇见你真的很不容易，因为有你，让我原本昏暗的世界充满了希望，活力，或许我不是一个合格的男朋友，但我会努力变合格，你不喜欢的地方我可以改，我的任何缺点我都可以改，你说的话我永远会认真听，和你在一起后，我有你就足够了，每次发消息给你我会一直一直等你回我消息，你每一句话我都有好好看，在这人海拥挤的城市遇见你真的很不容易，我真的狠喜欢你，我想余生都是你，可以吗'
+
+			
+
+			//点击信封后触发
+
+			envelop.onclick = function(){
+
+				
+
+				document.querySelector('.content').style.opacity = 1
+
+				
+
+				// 定时器 循环执行代码
+
+				let i = 0
+
+				let timer = setInterval(function(){
+
+					if(i > str.length - 1){
+
+						clearInterval(timer)
+
+						return
+
+					}
+
+					p.innerHTML += str[i]
+
+					i++
+
+				},200)
+
+				
+
+			}
+
+			
+
+			
+
+			
+
+		</script>
+
+	</body>
+
+</html>
